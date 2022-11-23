@@ -61,7 +61,8 @@ def calc_median(input_list):
     """
     sorted_list = sorted(input_list)
     mid_index = int(len(sorted_list)/2)
-    
+
+    #Checks if list size is even or odd
     if (len(sorted_list) % 2 == 1):
         median = sorted_list[mid_index]
     else:
@@ -85,6 +86,7 @@ def calc_mode(input_list):
     """
     frequencies = {}
     for number in input_list:
+        #Increments the frequency if key already exist or add it
         frequencies[number] = frequencies.get(number, 0) + 1
     
     mode = max(frequencies, key=frequencies.get)
@@ -155,7 +157,8 @@ def calc_inter_quartile(input_list):
     """
     sorted_list = sorted(input_list)
     mid_index = int(len(sorted_list) / 2)
-    
+
+    #Checks if list size is even or odd
     if(len(input_list) % 2 == 1):
         q1 = calc_median(sorted_list[:mid_index])
         q3 = calc_median(sorted_list[mid_index+1:])
@@ -207,7 +210,7 @@ def calc_mode_skewness(input_list):
     mode = calc_mode(input_list)
     deviation = calc_std_deviation(input_list)
     
-    return round(((mean - mode ) / deviation), 2)
+    return round(((mean - mode) / deviation), 2)
 
 def calc_correlation(x_values, y_values):
     """
@@ -230,7 +233,8 @@ def calc_correlation(x_values, y_values):
     
     x_deviations = [x - x_mean for x in x_values]
     y_deviations = [y - y_mean for y in y_values]
-    
+
+    #For each tuple, multiply the items of the two lists
     xy_deviations = [ x*y for (x,y) in zip(x_deviations,y_deviations)]
     
     x_squared_deviations = [x ** 2 for x in x_deviations]
@@ -255,7 +259,8 @@ def get_max_total(input_dict):
         Category with max value.
     String
         Max value.
-    """    
+    """
+    # Find key with max value
     max_category = max(input_dict, key=input_dict.get)
     return str(max_category), str(input_dict[max_category])
     
@@ -274,7 +279,8 @@ def get_min_total(input_dict):
         Category with min value.
     String
         Min value.
-    """    
+    """
+    # Find key with min value
     min_category = min(input_dict, key=input_dict.get)
     return str(min_category), str(input_dict[min_category])
 
@@ -295,8 +301,10 @@ def get_max_item(categories, values):
         Category with max value
     String
         Min Value.
-    """    
+    """
+    # Find the max value of the list
     max_value = max(values)
+    # Get its index
     max_value_index = values.index(max_value)
     return str(categories[max_value_index]), str(max_value) 
 
@@ -317,7 +325,9 @@ def get_min_item(categories, values):
         Category with min value
     String
         Min Value.
-    """    
+    """
+    # Find the min value of the list
     min_value = min(values)
+    # Get its index
     min_value_index = values.index(min_value)
     return str(categories[min_value_index]), str(min_value) 

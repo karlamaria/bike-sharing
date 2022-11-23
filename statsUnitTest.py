@@ -4,6 +4,8 @@
 Created on Sun Nov 20 20:40:44 2022
 
 @author: kgarcia03
+
+Test all functions that return a value
 """
 
 import pytest

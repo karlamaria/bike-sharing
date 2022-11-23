@@ -7,7 +7,7 @@ Created on Sun Nov 20 22:32:01 2022
 
 Student ID: A00304376
 
-Visualization plots all graphs 
+Plots all charts
 
 """
 
@@ -33,7 +33,7 @@ None:
 """   
 def plot_histogram(input_list, feature, step = 1):
     fig, ax = plt.subplots(figsize=(15,10))
-    # Set the title
+
     ax.set_title("Histogram")
     ax.set_xlabel(feature)
     ax.set_ylabel("Frequency")
@@ -42,10 +42,12 @@ def plot_histogram(input_list, feature, step = 1):
 
     ax.set_xticks(bins)
     ax.hist(input_list,bins,ec="black")
+    # Change x rotation to better visualize the items
     plt.xticks(rotation=45)
     
     fig.savefig(feature.lower().replace(" ", "_") + "_histogram_visualisations.png")
 
+    #Since no values is returned, a message is printed for the user
     print("Chart saved")
 
 """
@@ -72,7 +74,8 @@ def plot_box_plot(input_list, feature):
     ax.boxplot(input_list, showmeans=True, meanline=True)
     
     fig.savefig(feature.lower().replace(" ", "_") + "_box_plot_visualisations.png")
-    
+
+    #Since no values is returned, a message is printed for the user
     print("Chart saved")
     
 """
@@ -104,7 +107,8 @@ def plot_scatter_plot(input_list_x, input_list_y, feature_x, feature_y):
     ax.scatter(input_list_x,input_list_y,marker=".")
 
     fig.savefig(feature_x.lower().replace(" ", "_") + "_vs_" + feature_y.lower().replace(" ", "_")  + ".png")
-    
+
+    #Since no values is returned, a message is printed for the user
     print("Chart saved")
     
     
@@ -132,7 +136,8 @@ def plot_pie_chart(input_dict, feature):
     ax.plot(input_dict.keys(),input_dict.values())
 
     fig.savefig(feature.lower().replace(" ", "_") + "_pie_chart.png")
-    
+
+    #Since no values is returned, a message is printed for the user
     print("Chart saved")
     
 """
@@ -166,7 +171,8 @@ def plot_bar_chart(input_dict, feature_x, feature_y):
         ax.text(value, index, str(value))
      
     fig.savefig(feature_y.lower().replace(" ", "_") + "_bar_chart.png")
-    
+
+    #Since no values are returned, a message is printed for the user
     print("Chart saved")
     
 """
@@ -197,5 +203,6 @@ def plot_multiple_box_plot(input_dict, feature_x, feature_y):
                     showmeans=True, meanline=True)
     
     fig.savefig(feature_x.lower().replace(" ", "_") + "_multiple_box_plot.png")
-    
+
+    #Since no values is returned, a message is printed for the user
     print("Chart saved")

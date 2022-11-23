@@ -7,7 +7,7 @@ Created on Sun Nov 20 14:50:17 2022
 
 Student ID: A00304376
 
-Starts the user menu
+Load dataset and Starts the user menu
 """
 
 import stats
@@ -22,29 +22,29 @@ weathersits = []
 weathersit_dict = {}
 season_dict = {}
 
+
 """
-Calculate the sum of list
+Load bike-sharing dataset
 
 Parameters
 ----------
-input_list: String
-    filename that contains bike sharing data.
+None
 
 Returns
 -------
 None
 """
 def load_bike_rentals(filename):
-    
     try:
         with open(filename) as data_file:
             # read in the column headers and ignore  
             headers = data_file.readline()
-            # for each subsequent line
+            # reads file by line
             for line in data_file:
                 # split into components        
                 date_string, season, weekday, weathersit, temp, windspeed, total_rental, casual, registered, month, holiday = line.split(",")
-        
+
+                # Populates lists and dictionaries
                 temperatures.append(round(float(temp),2))
                 windspeeds.append(round(float(windspeed),2))
                 total_rentals.append(int(total_rental))
@@ -64,9 +64,21 @@ def load_bike_rentals(filename):
         print(dir_error)
     except PermissionError as permission_error:
         print(permission_error)
-        
+
+
+"""
+Analyse by Category Menu
+ 
+Parameters
+----------
+None
+
+Returns
+-------
+None
+"""
 def show_category_menu():        
-    option = '1'
+    option = ''
     while (option != '0'):
         print("""
 [1]Number of weathersit
@@ -81,7 +93,7 @@ def show_category_menu():
         option = input("Please Select:") 
                 
         if (option == '1'):   
-            print("Number of weathersit:", len(weathersit_dict))
+            print("Number of weathersits:", len(weathersit_dict))
             print()
             continue   
             
@@ -122,9 +134,20 @@ def show_category_menu():
         if (option == '8'):                
             visualization.plot_multiple_box_plot(season_dict, "Season", "Total Rental")
             print()
-            continue   
-        
+            continue
 
+
+"""
+Analyse by Numeric Columns Menu
+ 
+Parameters
+----------
+None
+
+Returns
+-------
+None
+"""
 def show_numeric_menu():
     option = '1'
     while (option != '0'):
@@ -261,8 +284,9 @@ def show_numeric_menu():
 
 if __name__ == "__main__":
     load_bike_rentals("bike-sharing.csv")
-   
-    if (len(temperatures) > 0 and len(total_rentals) > 0):
+
+    #Do nothing if there are no rentals
+    if (len(total_rentals) > 0):
         option = ''
         while (option != 'q'):
             print("""

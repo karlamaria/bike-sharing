@@ -12,26 +12,25 @@ Plots all charts
 """
 
 import matplotlib.pyplot as plt
-
-"""
-Plots a Histrogram for a list
-
-Parameters
-----------
-input_list: list
-    List of numbers.
-feature: String
-    The feature name to be plotted
-step: [optional] int
-    The difference between any two numbers in the sequence.
-    
-Returns
--------
-None: 
-    list is plotted in a histragram which is saved in a .png file
-    
-"""   
 def plot_histogram(input_list, feature, step = 1):
+    """
+    Plots a Histrogram for a list
+
+    Parameters
+    ----------
+    input_list: list
+        List of numbers.
+    feature: String
+        The feature name to be plotted
+    step: [optional] int
+        The difference between any two numbers in the sequence.
+
+    Returns
+    -------
+    None:
+        list is plotted in a histragram which is saved in a .png file
+
+    """
     fig, ax = plt.subplots(figsize=(15,10))
 
     ax.set_title("Histogram")
@@ -50,23 +49,23 @@ def plot_histogram(input_list, feature, step = 1):
     #Since no values is returned, a message is printed for the user
     print("Chart saved")
 
-"""
-Plots a Box Plot for a list
-
-Parameters
-----------
-input_list: list
-    List of numbers.
-feature: String
-    The feature name to be plotted
-
-Returns
--------
-None: 
-    list is plotted in a box plot which is saved in a .png file
-    
-""" 
 def plot_box_plot(input_list, feature):
+    """
+    Plots a Box Plot for a list
+
+    Parameters
+    ----------
+    input_list: list
+        List of numbers.
+    feature: String
+        The feature name to be plotted
+
+    Returns
+    -------
+    None:
+        list is plotted in a box plot which is saved in a .png file
+
+    """
     fig, ax = plt.subplots(figsize=(15,10))
     
     ax.set_title("Box Plot")
@@ -78,27 +77,27 @@ def plot_box_plot(input_list, feature):
     #Since no values is returned, a message is printed for the user
     print("Chart saved")
     
-"""
-Plots a Scatter Plot for a list
 
-Parameters
-----------
-input_list_x: list
-    Feature list in the axis x.
-input_list_y: list
-    Feature list in the axis y.
-feature_x: String
-    The feature name in the axis x
-feature_y: String
-    The feature name in the axis y
-
-Returns
--------
-None: 
-    lists are plotted in a scatter plot which is saved in a .png file
-    
-""" 
 def plot_scatter_plot(input_list_x, input_list_y, feature_x, feature_y):
+    """
+    Plots a Scatter Plot for a list
+
+    Parameters
+    ----------
+    input_list_x: list
+        Feature list in the axis x.
+    input_list_y: list
+        Feature list in the axis y.
+    feature_x: String
+        The feature name in the axis x
+    feature_y: String
+        The feature name in the axis y
+
+    Returns
+    -------
+    None:
+        lists are plotted in a scatter plot which is saved in a .png file
+"""
     fig, ax = plt.subplots(figsize=(10,15))
     
     ax.set_title(feature_y + " vs " + feature_x)        
@@ -110,25 +109,24 @@ def plot_scatter_plot(input_list_x, input_list_y, feature_x, feature_y):
 
     #Since no values is returned, a message is printed for the user
     print("Chart saved")
-    
-    
-"""
-Plots a Pie chart
 
-Parameters
-----------
-input_dict: dict
-    Feature dictionary
-feature: String
-    The feature name to be plotted
-
-Returns
--------
-None: 
-    dictionary keys/values are plotted in a pie chart which is saved in a .png file
-    
-""" 
 def plot_pie_chart(input_dict, feature):
+    """
+    Plots a Pie chart
+
+    Parameters
+    ----------
+    input_dict: dict
+        Feature dictionary
+    feature: String
+        The feature name to be plotted
+
+    Returns
+    -------
+    None:
+        dictionary keys/values are plotted in a pie chart which is saved in a .png file
+
+    """
     fig, ax = plt.subplots()
     
     ax.set_title(feature)
@@ -139,26 +137,26 @@ def plot_pie_chart(input_dict, feature):
 
     #Since no values is returned, a message is printed for the user
     print("Chart saved")
-    
-"""
-Plots a Bar chart
 
-Parameters
-----------
-input_dict: dict
-    Feature dictionary
-feature_x: String
-    The feature name in the axis x
-feature_y: String
-    The feature name in the axis y
-
-Returns
--------
-None: 
-    dictionary keys/values are plotted in a bar chart which is saved in a .png file
-    
-""" 
 def plot_bar_chart(input_dict, feature_x, feature_y):
+    """
+    Plots a Bar chart
+
+    Parameters
+    ----------
+    input_dict: dict
+        Feature dictionary
+    feature_x: String
+        The feature name in the axis x
+    feature_y: String
+        The feature name in the axis y
+
+    Returns
+    -------
+    None:
+        dictionary keys/values are plotted in a bar chart which is saved in a .png file
+
+    """
     fig, ax = plt.subplots(figsize=(15,10))
 
     ax.set_title(feature_x)
@@ -174,26 +172,25 @@ def plot_bar_chart(input_dict, feature_x, feature_y):
 
     #Since no values are returned, a message is printed for the user
     print("Chart saved")
-    
-"""
-Plots a multiple Box Plot for a dictionary
 
-Parameters
-----------
-input_dict: dict
-    Dict of categories.
-feature_x: String
-    The feature name in the axis x
-feature_y: String
-    The feature name in the axis y
-
-Returns
--------
-None: 
-    dictionary keys/values are plotted in a box plot which is saved in a .png file
-    
-""" 
 def plot_multiple_box_plot(input_dict, feature_x, feature_y):
+    """
+    Plots a multiple Box Plot for a dictionary
+
+    Parameters
+    ----------
+    input_dict: dict
+        Dict of categories.
+    feature_x: String
+        The feature name in the axis x
+    feature_y: String
+        The feature name in the axis y
+
+    Returns
+    -------
+    None:
+        dictionary keys/values are plotted in a box plot which is saved in a .png file
+    """
     fig, ax = plt.subplots(figsize=(15,10))
     
     ax.set_title(feature_x)

@@ -22,19 +22,18 @@ weathersits = []
 weathersit_dict = {}
 season_dict = {}
 
-
-"""
-Load bike-sharing dataset
-
-Parameters
-----------
-None
-
-Returns
--------
-None
-"""
 def load_bike_rentals(filename):
+    """
+    Load bike-sharing dataset
+
+    Parameters
+    ----------
+    None
+
+    Returns
+    -------
+    None
+    """
     try:
         with open(filename) as data_file:
             # read in the column headers and ignore  
@@ -65,19 +64,18 @@ def load_bike_rentals(filename):
     except PermissionError as permission_error:
         print(permission_error)
 
+def show_category_menu():
+    """
+    Analyse by Category Menu
 
-"""
-Analyse by Category Menu
- 
-Parameters
-----------
-None
+    Parameters
+    ----------
+    None
 
-Returns
--------
-None
-"""
-def show_category_menu():        
+    Returns
+    -------
+    None
+    """
     option = ''
     while (option != '0'):
         print("""
@@ -136,19 +134,18 @@ def show_category_menu():
             print()
             continue
 
-
-"""
-Analyse by Numeric Columns Menu
- 
-Parameters
-----------
-None
-
-Returns
--------
-None
-"""
 def show_numeric_menu():
+    """
+    Analyse by Numeric Columns Menu
+
+    Parameters
+    ----------
+    None
+
+    Returns
+    -------
+    None
+    """
     option = '1'
     while (option != '0'):
         print("""
@@ -282,6 +279,17 @@ def show_numeric_menu():
             continue 
         
 def show_main_menu():
+    """
+    Shows main menu
+
+    Parameters
+    ----------
+    None
+
+    Returns
+    -------
+    None
+    """
     #Do nothing if there are no rentals
     if (len(total_rentals) > 0):
         option = ''

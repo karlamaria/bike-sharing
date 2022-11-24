@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module visualization</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>visualization</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/kgarcia03/workspace/git/personal/bike-sharing/visualization.py">/Users/kgarcia03/workspace/git/personal/bike-sharing/visualization.py</a></font></td></tr></table>
+    <p><tt>Created&nbsp;on&nbsp;Sun&nbsp;Nov&nbsp;20&nbsp;22:32:01&nbsp;2022<br>
+&nbsp;<br>
+@author:&nbsp;kgarcia03<br>
+&nbsp;<br>
+Student&nbsp;ID:&nbsp;A00304376<br>
+&nbsp;<br>
+Plots&nbsp;all&nbsp;charts</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-plot_bar_chart"><strong>plot_bar_chart</strong></a>(input_dict, feature_x, feature_y)</dt><dd><tt>Plots&nbsp;a&nbsp;Bar&nbsp;chart<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+input_dict:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Feature&nbsp;dictionary<br>
+feature_x:&nbsp;String<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;feature&nbsp;name&nbsp;in&nbsp;the&nbsp;axis&nbsp;x<br>
+feature_y:&nbsp;String<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;feature&nbsp;name&nbsp;in&nbsp;the&nbsp;axis&nbsp;y<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+None:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dictionary&nbsp;keys/values&nbsp;are&nbsp;plotted&nbsp;in&nbsp;a&nbsp;bar&nbsp;chart&nbsp;which&nbsp;is&nbsp;saved&nbsp;in&nbsp;a&nbsp;.png&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-plot_box_plot"><strong>plot_box_plot</strong></a>(input_list, feature)</dt><dd><tt>Plots&nbsp;a&nbsp;Box&nbsp;Plot&nbsp;for&nbsp;a&nbsp;list<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+input_list:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;numbers.<br>
+feature:&nbsp;String<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;feature&nbsp;name&nbsp;to&nbsp;be&nbsp;plotted<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+None:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;is&nbsp;plotted&nbsp;in&nbsp;a&nbsp;box&nbsp;plot&nbsp;which&nbsp;is&nbsp;saved&nbsp;in&nbsp;a&nbsp;.png&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-plot_histogram"><strong>plot_histogram</strong></a>(input_list, feature, step=1)</dt><dd><tt>Plots&nbsp;a&nbsp;Histrogram&nbsp;for&nbsp;a&nbsp;list<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+input_list:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;numbers.<br>
+feature:&nbsp;String<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;feature&nbsp;name&nbsp;to&nbsp;be&nbsp;plotted<br>
+step:&nbsp;[optional]&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;difference&nbsp;between&nbsp;any&nbsp;two&nbsp;numbers&nbsp;in&nbsp;the&nbsp;sequence.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+None:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;is&nbsp;plotted&nbsp;in&nbsp;a&nbsp;histragram&nbsp;which&nbsp;is&nbsp;saved&nbsp;in&nbsp;a&nbsp;.png&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-plot_multiple_box_plot"><strong>plot_multiple_box_plot</strong></a>(input_dict, feature_x, feature_y)</dt><dd><tt>Plots&nbsp;a&nbsp;multiple&nbsp;Box&nbsp;Plot&nbsp;for&nbsp;a&nbsp;dictionary<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+input_dict:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Dict&nbsp;of&nbsp;categories.<br>
+feature_x:&nbsp;String<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;feature&nbsp;name&nbsp;in&nbsp;the&nbsp;axis&nbsp;x<br>
+feature_y:&nbsp;String<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;feature&nbsp;name&nbsp;in&nbsp;the&nbsp;axis&nbsp;y<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+None:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dictionary&nbsp;keys/values&nbsp;are&nbsp;plotted&nbsp;in&nbsp;a&nbsp;box&nbsp;plot&nbsp;which&nbsp;is&nbsp;saved&nbsp;in&nbsp;a&nbsp;.png&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-plot_pie_chart"><strong>plot_pie_chart</strong></a>(input_dict, feature)</dt><dd><tt>Plots&nbsp;a&nbsp;Pie&nbsp;chart<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+input_dict:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Feature&nbsp;dictionary<br>
+feature:&nbsp;String<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;feature&nbsp;name&nbsp;to&nbsp;be&nbsp;plotted<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+None:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dictionary&nbsp;keys/values&nbsp;are&nbsp;plotted&nbsp;in&nbsp;a&nbsp;pie&nbsp;chart&nbsp;which&nbsp;is&nbsp;saved&nbsp;in&nbsp;a&nbsp;.png&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-plot_scatter_plot"><strong>plot_scatter_plot</strong></a>(input_list_x, input_list_y, feature_x, feature_y)</dt><dd><tt>Plots&nbsp;a&nbsp;Scatter&nbsp;Plot&nbsp;for&nbsp;a&nbsp;list<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+input_list_x:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Feature&nbsp;list&nbsp;in&nbsp;the&nbsp;axis&nbsp;x.<br>
+input_list_y:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Feature&nbsp;list&nbsp;in&nbsp;the&nbsp;axis&nbsp;y.<br>
+feature_x:&nbsp;String<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;feature&nbsp;name&nbsp;in&nbsp;the&nbsp;axis&nbsp;x<br>
+feature_y:&nbsp;String<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;feature&nbsp;name&nbsp;in&nbsp;the&nbsp;axis&nbsp;y<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+None:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;lists&nbsp;are&nbsp;plotted&nbsp;in&nbsp;a&nbsp;scatter&nbsp;plot&nbsp;which&nbsp;is&nbsp;saved&nbsp;in&nbsp;a&nbsp;.png&nbsp;file</tt></dd></dl>
+</td></tr></table>
+</body></html>

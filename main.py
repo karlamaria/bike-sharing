@@ -281,10 +281,7 @@ def show_numeric_menu():
             print()
             continue 
         
-
-if __name__ == "__main__":
-    load_bike_rentals("bike-sharing.csv")
-
+def show_main_menu():
     #Do nothing if there are no rentals
     if (len(total_rentals) > 0):
         option = ''
@@ -294,11 +291,16 @@ if __name__ == "__main__":
 [C]Analysis by Category feature
 [Q]uit""")
             option = input("Please Select:").lower()
-           
+
             if (option == 'n'):
                 show_numeric_menu()
                 continue
             if (option == 'c'):
                 show_category_menu()
                 continue
+
+if __name__ == "__main__":
+    load_bike_rentals("bike-sharing.csv")
+    show_main_menu()
+
                 

@@ -18,6 +18,7 @@ total_rentals = []
 weathersits = []
 weathersit_dict = {}
 season_dict = {}
+weekday_dict = {}
 
 def load_bike_rentals(filename):
     """
@@ -42,12 +43,13 @@ def load_bike_rentals(filename):
                 date_string, season, weekday, weathersit, temp, windspeed, total_rental, casual, registered, month, holiday = line.split(",")
 
                 # Populates lists and dictionaries
-                temperatures.append(round(float(temp),2))
-                windspeeds.append(round(float(windspeed),2))
+                temperatures.append(float(temp))
+                windspeeds.append(float(windspeed))
                 total_rentals.append(int(total_rental))
                 weathersits.append(weathersit)
                 
                 weathersit_dict[weathersit] = weathersit_dict.get(weathersit,0) + int(total_rental)
+                weekday_dict[weekday] = weekday_dict.get(weekday,0) + int(total_rental)
 
                 if season not in season_dict:
                     season_dict[season] = [int(total_rental)]
@@ -75,172 +77,57 @@ def show_category_menu():
     option = ''
     while (option != '0'):
         print("""
-[1]Number of weathersit
-[2]Weathersit with more rentals
-[3]Weathersit with less rentals 
-[4]Weathersit with highest rentals
-[5]Weathersit with lowest rentals
-[6]Pie chart Weathersit
-[7]Bar chart renatals
-[8]Box Plot Season 
-[0]Return to main menu""")
-        option = input("Please Select:") 
-                
-        if (option == '1'):   
-            print("Number of weathersit:", len(weathersit_dict))
-            print()
-            continue   
-            
-        if (option == '2'):   
-            most_popular_weathersit, most_popular_weathersit_value = stats.get_max_total(weathersit_dict)
-            print("Weathersit with more rentals is " + most_popular_weathersit + " with " + most_popular_weathersit_value + " rentals.")
-            print()
-            continue   
-            
-        if (option == '3'):   
-            less_popular_weathersit, less_popular_weathersit_value = stats.get_min_total(weathersit_dict)
-            print("Weathersit with less rentals is " + less_popular_weathersit + " with " + less_popular_weathersit_value + " rentals.")
-            print()
-            continue   
-            
-        if (option == '4'):   
-            max_category, max_category_value = stats.get_max_item(weathersits, total_rentals)
-            print("Weathersit with highest rentals is " + max_category + " with " + max_category_value + " rentals.")
-            print()
-            continue   
-            
-        if (option == '5'):   
-            min_category, min_category_value = stats.get_min_item(weathersits, total_rentals)
-            print("Weathersit with lowest rentals:", min_category + " with " + min_category_value + " rentals.")
-            print()
-            continue   
-        
-        if (option == '6'):
-            visualization.plot_pie_chart(weathersit_dict, "Weathersit")
-            print()
-            continue   
-                        
-        if (option == '7'):
-            visualization.plot_bar_chart(weathersit_dict, "Rentals", "Weathersit")
-            print()
-            continue   
-                        
-        if (option == '8'):                
-            visualization.plot_multiple_box_plot(season_dict, "Season", "Total Rental")
-            print()
-            continue
-
-
-def show_common_numeric_menu(feature_list, feature_name):
-    """
-    Analyse by Numeric Columns Menu
-    Parameters
-    ----------
-    None
-    Returns
-    -------
-    None
-    """
-    option = ''
-    while (option != '0'):
-        print("""
-[1]Number inputs
-[2]Total
-[3]Mean
-[4]Median
-[5]Mode
-[6]Maximum
-[7]Minimum
-[8]Range
-[9]InterQuartile Range
-[10]Standard Deviation
-[11]Skewness
-[12]Histogram
-[13]Box Plot
+[1]Weathersit Metrics
+[2]Weathersit sub category Metrics
+[3]Weathersit Visualisation
+[4]Season Visualisation
+[5]Weekday Visualisation
 [0]Return to main menu""")
         option = input("Please Select:")
-
+            
         if (option == '1'):
-            print("Number of inputs:", len(feature_list))
+            most_freq_category, most_freq_category_value = stats.get_most_frequent(weathersits)
+            less_freq_category, less_freq_category_value = stats.get_less_frequent(weathersits)
+
+            print("Weathersit                                     Name of categorical Variable")
+            print(f"Number of Subcategories                 {len(weathersit_dict):>20}")
+            print(f"Subcategory with highest frequency      {most_freq_category:>20} ({most_freq_category_value:.2f})")
+            print(f"Subcategory with lowest frequency       {less_freq_category:>20} ({less_freq_category_value:.2f})")
             print()
             continue
 
         if (option == '2'):
-            total_rental = stats.calc_sum(feature_list)
-            print("Total " + str(total_rental))
+            highest_total, highest_total_value = stats.get_max_total(weathersit_dict)
+            lowest_total, lowest_total_value = stats.get_min_total(weathersit_dict)
+
+            print("Analysis by Category                       Weathersit")
+            print(f"Subcategory with highest total      {highest_total:>20} ({highest_total_value:.2f})")
+            print(f"Subcategory with lowest total       {lowest_total:>20} ({lowest_total_value:.2f})")
             print()
             continue
 
         if (option == '3'):
-            mean_by_day = stats.calc_mean(feature_list)
-            print("Mean "  + str(mean_by_day))
+            visualization.plot_pie_chart(weathersit_dict, "Weathersit")
+            visualization.plot_bar_chart(weathersit_dict, "Rentals", "Weathersit")
+            print("Charts saved")
             print()
             continue
-
+                        
         if (option == '4'):
-            median = stats.calc_median(feature_list)
-            print("Median " + str(median))
+            visualization.plot_multiple_box_plot(season_dict, "Season", "Total Rental")
+            print("Chart saved")
             print()
             continue
 
         if (option == '5'):
-            mode = stats.calc_mode(feature_list)
-            print("Mode " + str(mode))
-            print()
-            continue
-
-        if (option == '6'):
-            max_value = stats.calc_max_value(feature_list)
-            print("Max " + str(max_value))
-            print()
-            continue
-
-        if (option == '7'):
-            min_value = stats.calc_min_value(feature_list)
-            print("Min " + str(min_value))
-            print()
-            continue
-
-        if (option == '8'):
-            range_value = stats.calc_range(feature_list)
-            print("Range " + str(range_value))
-            print()
-            continue
-
-        if (option == '9'):
-            inter_quartile = stats.calc_inter_quartile(feature_list)
-            print("Inter Quartile " + str(inter_quartile))
-            print()
-            continue
-
-        if (option == '10'):
-            std_deviation = stats.calc_std_deviation(feature_list)
-            print("Standard Deviation", std_deviation)
-            print()
-            continue
-
-        if (option == '11'):
-            mode_skewness = stats.calc_mode_skewness(feature_list)
-            print("Mode Skewness", mode_skewness)
-            print()
-            continue
-
-        if (option == '12'):
-            step = 1
-            if (feature_name == "Temperature"):
-                step = 200
-            visualization.plot_histogram(feature_list, feature_name, step)
-            print()
-            continue
-
-        if (option == '13'):
-            visualization.plot_box_plot(temperatures, feature_name)
+            visualization.plot_pie_chart(weekday_dict, "Weekday")
+            print("Chart saved")
             print()
             continue
 
 def show_numeric_menu():
     """
-    Analyse by Numeric Columns Menu
+    Numeric Columns Menu
     Parameters
     ----------
     None
@@ -251,42 +138,85 @@ def show_numeric_menu():
     option = ''
     while (option != '0'):
         print("""
-[1]Total Rentals Metrics
-[2]Temperature Metrics
-[3]Total Rental x Temperature Correlation
-[4]Total Rental x Wind Speed Correlation
-[5]Scatter Temperature x Rentals
-[6]Scatter Windspeed x Rentals
+[1]Total Rentals and Temperature Metrics
+[2]Total Rentals Visualisation
+[3]Temperature Visualisation
+[4]Total Rentals and Temperature Visualisation
+[5]Total Rentals and Windspeed Visualisation
 [0]Return to main menu""")
         option = input("Please Select:") 
         
         if (option == '1'):
-            show_common_numeric_menu(total_rentals, "Total Rental")
+            correlation = stats.calc_correlation(total_rentals, temperatures)
+
+            total_rentals_len = len(total_rentals)
+            total_rental_sum = stats.calc_sum(total_rentals)
+            total_rentals_mean_by_day = stats.calc_mean(total_rentals)
+            total_rentals_median = stats.calc_median(total_rentals)
+            total_rentals_mode = stats.calc_mode(total_rentals)
+            total_rentals_max_value = stats.calc_max_value(total_rentals)
+            total_rentals_min_value = stats.calc_min_value(total_rentals)
+            total_rentals_range_value = stats.calc_range(total_rentals)
+            total_rentals_inter_quartile = stats.calc_inter_quartile(total_rentals)
+            total_rentals_std_deviation = stats.calc_std_deviation(total_rentals)
+            total_rentals_mode_skewness = stats.calc_mode_skewness(total_rentals)
+            total_rentals_median_skewness = stats.calc_median_skewness(total_rentals)
+
+            temperatures_len = len(temperatures)
+            temperatures_sum = stats.calc_sum(temperatures)
+            temperatures_mean_by_day = stats.calc_mean(temperatures)
+            temperatures_median = stats.calc_median(temperatures)
+            temperatures_mode = stats.calc_mode(temperatures)
+            temperatures_max_value = stats.calc_max_value(temperatures)
+            temperatures_min_value = stats.calc_min_value(temperatures)
+            temperatures_range_value = stats.calc_range(temperatures)
+            temperatures_inter_quartile = stats.calc_inter_quartile(temperatures)
+            temperatures_std_deviation = stats.calc_std_deviation(temperatures)
+            temperatures_mode_skewness = stats.calc_mode_skewness(temperatures)
+            temperatures_median_skewness = stats.calc_median_skewness(temperatures)
+
+            print("                              Total Rentals           Temperature")
+            print(f"Number of values        {total_rentals_len:>20}{temperatures_len:>20}")
+            print(f"Total                   {total_rental_sum:>20}{temperatures_sum:>20,.2f}")
+            print(f"Mean                    {total_rentals_mean_by_day:>20,.2f}{temperatures_mean_by_day:>20,.2f}")
+            print(f"Median                  {total_rentals_median:>20,.2f}{temperatures_median:>20,.2f}")
+            print(f"Mode                    {total_rentals_mode:>20,.2f}{temperatures_mode:>20,.2f}")
+            print(f"Maximum                 {total_rentals_max_value:>20,.2f}{temperatures_max_value:>20,.2f}")
+            print(f"Minimum                 {total_rentals_min_value:>20,.2f}{temperatures_min_value:>20,.2f}")
+            print(f"Range                   {total_rentals_range_value:>20,.2f}{temperatures_range_value:>20,.2f}")
+            print(f"Inter-Quartile Range    {total_rentals_inter_quartile:>20,.2f}{temperatures_inter_quartile:>20,.2f}")
+            print(f"Standard Deviation      {total_rentals_std_deviation:>20,.2f}{temperatures_std_deviation:>20,.2f}")
+            print(f"Media Skewness          {total_rentals_median_skewness:>20,.2f}{temperatures_median_skewness:>20,.2f}")
+            print(f"Mode Skewness           {total_rentals_mode_skewness:>20,.2f}{temperatures_mode_skewness:>20,.2f}")
+            print(f"Correlation                        {correlation:>20,.2f}")
+            print()
             continue
-               
+
         if (option == '2'):
-            show_common_numeric_menu(temperatures, "Temperature")
+            visualization.plot_histogram(total_rentals, "Total Rentals", 200)
+            visualization.plot_box_plot(total_rentals, "Total Rentals")
+            print("Charts saved")
+            print()
             continue
 
         if (option == '3'):
-            correlation = stats.calc_correlation(total_rentals, temperatures)
-            print("Total Rental x Temperature Correlation", correlation)
+            visualization.plot_histogram(temperatures, "Temperature")
+            visualization.plot_box_plot(temperatures, "Temperature")
+            print("Charts saved")
             print()
-            continue     
+            continue
 
         if (option == '4'):
-            correlation = stats.calc_correlation(total_rentals, windspeeds)
-            print("Total Rental x Wind Speed Correlation", correlation)
+            visualization.plot_scatter_plot(temperatures, total_rentals, "Temperature", "Total Rental")
+            print("Charts saved")
             print()
-            continue   
+            continue
 
         if (option == '5'):
-            visualization.plot_scatter_plot(temperatures, total_rentals, "Temperature", "Total Rental")
-            print()
-            continue 
-        
-        if (option == '6'):
-            visualization.plot_scatter_plot(windspeeds, total_rentals, "Wind Speed", "Total Rental")
+            visualization.plot_scatter_plot(windspeeds, total_rentals, "Windspeed", "Total Rental")
+            visualization.plot_histogram(windspeeds, "Windspeed")
+            visualization.plot_box_plot(windspeeds, "Windspeed")
+            print("Charts saved")
             print()
             continue
 

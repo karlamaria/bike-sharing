@@ -26,7 +26,7 @@ def calc_sum(input_list):
     float
         The sum of all the elements in the list.
     """
-    return(sum(input_list))
+    return sum(input_list)
 
 def calc_mean(input_list): 
     """
@@ -42,8 +42,7 @@ def calc_mean(input_list):
     float
         The mean of all the elements in the list.
     """
-    mean = sum(input_list) / len(input_list)
-    return(round(mean,2))
+    return sum(input_list) / len(input_list)
 
 def calc_median(input_list): 
     """
@@ -190,7 +189,7 @@ def calc_std_deviation(input_list):
     
     variance = sum_dev / (n - 1)
     
-    return round(math.sqrt(variance),2)
+    return math.sqrt(variance)
 
 def calc_mode_skewness(input_list):
     """
@@ -210,7 +209,27 @@ def calc_mode_skewness(input_list):
     mode = calc_mode(input_list)
     deviation = calc_std_deviation(input_list)
     
-    return round(((mean - mode) / deviation), 2)
+    return (mean - mode) / deviation
+
+def calc_median_skewness(input_list):
+    """
+    Calculate the median skewness of list
+
+    Parameters
+    ----------
+    input_list: list
+        List of numbers.
+
+    Returns
+    -------
+    float
+        The median skewness of list.
+    """
+    mean = calc_mean(input_list)
+    median = calc_median(input_list)
+    deviation = calc_std_deviation(input_list)
+
+    return (3 * (mean - median)) / deviation
 
 def calc_correlation(x_values, y_values):
     """
@@ -240,9 +259,7 @@ def calc_correlation(x_values, y_values):
     x_squared_deviations = [x ** 2 for x in x_deviations]
     y_squared_deviations = [y ** 2 for y in y_deviations]
     
-    correlation = sum(xy_deviations) / (math.sqrt(sum(x_squared_deviations)) * math.sqrt(sum(y_squared_deviations)))
-    
-    return round(correlation,2)
+    return sum(xy_deviations) / (math.sqrt(sum(x_squared_deviations)) * math.sqrt(sum(y_squared_deviations)))
 
 def get_max_total(input_dict):
     """
@@ -262,7 +279,7 @@ def get_max_total(input_dict):
     """
     # Find key with max value
     max_category = max(input_dict, key=input_dict.get)
-    return str(max_category), str(input_dict[max_category])
+    return max_category, input_dict[max_category]
     
 def get_min_total(input_dict):
     """
@@ -282,52 +299,48 @@ def get_min_total(input_dict):
     """
     # Find key with min value
     min_category = min(input_dict, key=input_dict.get)
-    return str(min_category), str(input_dict[min_category])
+    return min_category, input_dict[min_category]
 
-def get_max_item(categories, values):
+def get_most_frequent(categories):
     """
-    Returns item with max value
+    Returns most frequent category and its frequency
     
     Parameters
     ----------
     categories: list
         list of categories
-    values: list
-        list of values
     
     Returns
     -------
     String
-        Category with max value
+        Most frequent sub category
     String
-        Min Value.
+        Frequency
     """
-    # Find the max value of the list
-    max_value = max(values)
-    # Get its index
-    max_value_index = values.index(max_value)
-    return str(categories[max_value_index]), str(max_value) 
+    frequencies = {}
+    for subcategory in categories:
+        frequencies[subcategory] = frequencies.get(subcategory, 0) + 1
 
-def get_min_item(categories, values):
+    return get_max_total(frequencies)
+
+def get_less_frequent(categories):
     """
-    Returns item with min value
-    
+    Returns less frequent category and its frequency
+
     Parameters
     ----------
     categories: list
         list of categories
-    values: list
-        list of values
-    
+
     Returns
     -------
     String
-        Category with min value
+        Less frequent sub category
     String
-        Min Value.
+        Frequency
     """
-    # Find the min value of the list
-    min_value = min(values)
-    # Get its index
-    min_value_index = values.index(min_value)
-    return str(categories[min_value_index]), str(min_value) 
+    frequencies = {}
+    for subcategory in categories:
+        frequencies[subcategory] = frequencies.get(subcategory, 0) + 1
+
+    return get_min_total(frequencies)

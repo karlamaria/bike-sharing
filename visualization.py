@@ -46,9 +46,6 @@ def plot_histogram(input_list, feature, step = 1):
     
     fig.savefig(feature.lower().replace(" ", "_") + "_histogram_visualisations.png")
 
-    #Since no values is returned, a message is printed for the user
-    print("Chart saved")
-
 def plot_box_plot(input_list, feature):
     """
     Plots a Box Plot for a list
@@ -73,9 +70,6 @@ def plot_box_plot(input_list, feature):
     ax.boxplot(input_list, showmeans=True, meanline=True)
     
     fig.savefig(feature.lower().replace(" ", "_") + "_box_plot_visualisations.png")
-
-    #Since no values is returned, a message is printed for the user
-    print("Chart saved")
     
 
 def plot_scatter_plot(input_list_x, input_list_y, feature_x, feature_y):
@@ -107,9 +101,6 @@ def plot_scatter_plot(input_list_x, input_list_y, feature_x, feature_y):
 
     fig.savefig(feature_x.lower().replace(" ", "_") + "_vs_" + feature_y.lower().replace(" ", "_")  + ".png")
 
-    #Since no values is returned, a message is printed for the user
-    print("Chart saved")
-
 def plot_pie_chart(input_dict, feature):
     """
     Plots a Pie chart
@@ -134,9 +125,6 @@ def plot_pie_chart(input_dict, feature):
     ax.plot(input_dict.keys(),input_dict.values())
 
     fig.savefig(feature.lower().replace(" ", "_") + "_pie_chart.png")
-
-    #Since no values is returned, a message is printed for the user
-    print("Chart saved")
 
 def plot_bar_chart(input_dict, feature_x, feature_y):
     """
@@ -170,9 +158,6 @@ def plot_bar_chart(input_dict, feature_x, feature_y):
      
     fig.savefig(feature_y.lower().replace(" ", "_") + "_bar_chart.png")
 
-    #Since no values are returned, a message is printed for the user
-    print("Chart saved")
-
 def plot_multiple_box_plot(input_dict, feature_x, feature_y):
     """
     Plots a multiple Box Plot for a dictionary
@@ -200,6 +185,3 @@ def plot_multiple_box_plot(input_dict, feature_x, feature_y):
                     showmeans=True, meanline=True)
     
     fig.savefig(feature_x.lower().replace(" ", "_") + "_multiple_box_plot.png")
-
-    #Since no values is returned, a message is printed for the user
-    print("Chart saved")

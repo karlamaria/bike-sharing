@@ -17,7 +17,8 @@ windspeeds = []
 total_rentals = []
 weathersits = []
 weathersit_dict = {}
-season_dict = {}
+season_rentals_dict = {}
+season_temp_dict = {}
 weekday_dict = {}
 
 def load_bike_rentals(filename):
@@ -51,12 +52,12 @@ def load_bike_rentals(filename):
                 weathersit_dict[weathersit] = weathersit_dict.get(weathersit,0) + int(total_rental)
                 weekday_dict[weekday] = weekday_dict.get(weekday,0) + int(total_rental)
 
-                if season not in season_dict:
-                    season_dict[season] = [int(total_rental)]
+                if season not in season_rentals_dict:
+                    season_rentals_dict[season] = [int(total_rental)]
+                    season_temp_dict[season] = [float(temp)]
                 else:
-                    season_dict[season].append(int(total_rental))
-                
-                
+                    season_rentals_dict[season].append(int(total_rental))
+                    season_temp_dict[season].append(float(temp))
     except FileNotFoundError as fnf_error:
         print(fnf_error)
     except IsADirectoryError as dir_error:
@@ -100,7 +101,7 @@ def show_category_menu():
             highest_total, highest_total_value = stats.get_max_total(weathersit_dict)
             lowest_total, lowest_total_value = stats.get_min_total(weathersit_dict)
 
-            print("Analysis by Category                       Weathersit")
+            print("Analysis by Category                                  Weathersit")
             print(f"Subcategory with highest total      {highest_total:>20} ({highest_total_value:.2f})")
             print(f"Subcategory with lowest total       {lowest_total:>20} ({lowest_total_value:.2f})")
             print()
@@ -114,8 +115,12 @@ def show_category_menu():
             continue
                         
         if (option == '4'):
-            visualization.plot_multiple_box_plot(season_dict, "Season", "Total Rental")
-            print("Chart saved")
+            visualization.plot_multiple_box_plot(season_rentals_dict, "Season", "Total Rental")
+            visualization.plot_histogram(season_temp_dict["summer"], "Summer")
+            visualization.plot_histogram(season_temp_dict["springer"], "Springer")
+            visualization.plot_histogram(season_temp_dict["fall"], "Fall")
+            visualization.plot_histogram(season_temp_dict["winter"], "Winter")
+            print("Charts saved")
             print()
             continue
 
@@ -208,15 +213,13 @@ def show_numeric_menu():
 
         if (option == '4'):
             visualization.plot_scatter_plot(temperatures, total_rentals, "Temperature", "Total Rental")
-            print("Charts saved")
+            print("Chart saved")
             print()
             continue
 
         if (option == '5'):
             visualization.plot_scatter_plot(windspeeds, total_rentals, "Windspeed", "Total Rental")
-            visualization.plot_histogram(windspeeds, "Windspeed")
-            visualization.plot_box_plot(windspeeds, "Windspeed")
-            print("Charts saved")
+            print("Chart saved")
             print()
             continue
 

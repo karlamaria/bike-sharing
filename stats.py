@@ -209,7 +209,7 @@ def calc_mode_skewness(input_list):
     mode = calc_mode(input_list)
     deviation = calc_std_deviation(input_list)
     
-    return (mean - mode) / deviation
+    return ((mean - mode) / deviation)
 
 def calc_median_skewness(input_list):
     """
@@ -229,7 +229,7 @@ def calc_median_skewness(input_list):
     median = calc_median(input_list)
     deviation = calc_std_deviation(input_list)
 
-    return (3 * (mean - median)) / deviation
+    return ((3 * (mean - median)) / deviation)
 
 def calc_correlation(x_values, y_values):
     """
